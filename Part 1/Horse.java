@@ -26,17 +26,10 @@ public class Horse
     }
     
     
-    
     //Other methods of class Horse
     public void fall()
     {
-        String horse_status2 = "fallen";
-
-        if(horse_status2 == "fallen"){
-            horse_status = true;
-        } else {
-            horse_status = false;
-        }
+        horse_status = true;
     }
     
     public double getConfidence()
@@ -68,7 +61,7 @@ public class Horse
     {
         if (horse_status){
             return true;
-        } else {
+        } else{
             return false;
         }
     }

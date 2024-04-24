@@ -14,20 +14,19 @@ public class Race {
     private Horse lane2Horse;
     private Horse lane3Horse;
 
-
     public static void main(String[] args) {
         // Create a new race object
-        Race newRace = new Race (10);
+        Race newRace = new Race(10);
 
         // Create different horses for the race
-        Horse firstHorse = new Horse('%', "Juniper", 0.8);
+        Horse firstHorse = new Horse('%', "Juniper", 0.6);
         Horse secondHorse = new Horse('£', "Stanford", 0.6);
-        Horse thirdHorse = new Horse('$', "Hero", 0.5);
+        Horse thirdHorse = new Horse('$', "Hero", 0.6);
 
         // Add the horses to the race
-        newRace.addHorse(firstHorse , 1);
-        newRace.addHorse(secondHorse , 2);
-        newRace.addHorse(thirdHorse , 3);
+        newRace.addHorse(firstHorse, 1);
+        newRace.addHorse(secondHorse, 2);
+        newRace.addHorse(thirdHorse, 3);
 
         // Start the race
         newRace.startRace();
@@ -92,18 +91,6 @@ public class Race {
             // Checks if any of the three horses has won the race is finished
             if (raceWonBy(lane1Horse) || raceWonBy(lane2Horse) || raceWonBy(lane3Horse)) {
                 finished = true;
-
-                // This checks and print which horse won the race
-                if (raceWonBy(lane1Horse)) {
-                    System.out.println("The horse in lane 1 Won");
-                    break;
-                } else if (raceWonBy(lane2Horse)) {
-                    System.out.println("The horse in lane 2 Won");
-                    break;
-                } else if (raceWonBy(lane3Horse)) {
-                    System.out.println("The horse in lane 3 Won");
-                    break;
-                }
             }
 
             // wait for 100 milliseconds
@@ -111,6 +98,16 @@ public class Race {
                 TimeUnit.MILLISECONDS.sleep(100);
             } catch (Exception e) {
             }
+
+        }
+        
+        // This checks and print which horse won the race
+        if (raceWonBy(lane1Horse)) {
+            System.out.println("The winnner of the race is " + lane1Horse.getName() + " ");
+        } else if (raceWonBy(lane2Horse)) {
+            System.out.println("The winnner of the race is " + lane2Horse.getName() + " ");
+        } else if (raceWonBy(lane3Horse)) {
+            System.out.println("The winnner of the race is " + lane3Horse.getName() + " ");
         }
     }
 
@@ -136,6 +133,7 @@ public class Race {
             // so if you double the confidence, the probability that it will fall is *2
             if (Math.random() < (0.1 * theHorse.getConfidence() * theHorse.getConfidence())) {
                 theHorse.fall();
+                theHorse.setConfidence(theHorse.getConfidence() - 0.1);
             }
         }
     }
@@ -159,52 +157,22 @@ public class Race {
      */
     private void printRace() {
         // System.out.print('\u000C'); // clear the terminal window
+        System.out.print("\u001b[2J\u001b[H");
 
-        // multiplePrint('=', raceLength + 3); // top edge of track
-        // System.out.println();
-
-        // printLane(lane1Horse);
-        // System.out.println();
-
-        // printLane(lane2Horse);
-        // System.out.println();
-
-        // printLane(lane3Horse);
-        // System.out.println();
-
-        // multiplePrint('=', raceLength + 3); // bottom edge of track
-        // System.out.println();
-
-        // -----------------------------------------------------------------
-
-        // Move the cursor to the top left corner of the terminal
-        System.out.print("\u001B[H");
-
-        // Print the top edge of the track
-        multiplePrint('=', raceLength + 3);
+        multiplePrint('=', raceLength + 3); // top edge of track
         System.out.println();
 
-        // Print the lane for each horse
-        System.out.print("| ");
         printLane(lane1Horse);
-        System.out.print(" |\n| ");
-        printLane(lane2Horse);
-        System.out.print(" |\n| ");
-        printLane(lane3Horse);
-        System.out.print(" |\n");
-
-        // Print the bottom edge of the track
-        multiplePrint('=', raceLength + 3);
         System.out.println();
 
-        // If the race is finished, print an empty line to ensure the box doesn't get
-        // cut
-        if (raceWonBy(lane1Horse) || raceWonBy(lane2Horse) || raceWonBy(lane3Horse)) {
-            System.out.println();
-        }
+        printLane(lane2Horse);
+        System.out.println();
 
-        // Move the cursor up to the start of the race display
-        System.out.print("\u001B[8A");
+        printLane(lane3Horse);
+        System.out.println();
+
+        multiplePrint('=', raceLength + 3); // bottom edge of track
+        System.out.println();
     }
 
     /**
@@ -228,7 +196,7 @@ public class Race {
         // if the horse has fallen then print dead
         // else print the horse's symbol
         if (theHorse.hasFallen()) {
-            System.out.print('\u2322');
+            System.out.print('X');
         } else {
             System.out.print(theHorse.getSymbol());
         }
@@ -238,6 +206,8 @@ public class Race {
 
         // print the | for the end of the track
         System.out.print('|');
+
+        System.out.print(" " + theHorse.getName() + " (Current confidence " + theHorse.getConfidence() + ")");
     }
 
     /***
@@ -248,6 +218,7 @@ public class Race {
      */
     private void multiplePrint(char aChar, int times) {
         int i = 0;
+
         while (i < times) {
             System.out.print(aChar);
             i = i + 1;
