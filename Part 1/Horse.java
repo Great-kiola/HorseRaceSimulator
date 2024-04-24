@@ -81,7 +81,7 @@ public class Horse
     public void setConfidence(double newConfidence)
     {
         if(newConfidence >= 0 && newConfidence <= 1){
-            this.horse_confidence = newConfidence;
+            horse_confidence = newConfidence;
         } else{
             System.out.println("Horse confidence must be either be 0 or 1");
         }
