@@ -33,40 +33,40 @@ public class Horse
         String horse_status2 = "fallen";
 
         if(horse_status2 == "fallen"){
-            this.horse_status = true;
+            horse_status = true;
         } else {
-            this.horse_status = false;
+            horse_status = false;
         }
     }
     
     public double getConfidence()
     {
-        return horse_confidence;
+        return this.horse_confidence;
     }
     
     public int getDistanceTravelled()
     {
-        return distance_travelled;
+        return this.distance_travelled;
     }
     
     public String getName()
     {
-        return horse_name;
+        return this.horse_name;
     }
     
     public char getSymbol()
     {
-        return horse_symbol;
+        return this.horse_symbol;
     }
     
     public void goBackToStart()
     {
-        this.distance_travelled = 0;
+        distance_travelled = 0;
     }
     
     public boolean hasFallen()
     {
-        if (this.horse_status){
+        if (horse_status){
             return true;
         } else {
             return false;
@@ -89,7 +89,7 @@ public class Horse
     
     public void setSymbol(char newSymbol)
     {
-        this.horse_symbol = newSymbol;
+        horse_symbol = newSymbol;
     }
     
 }
