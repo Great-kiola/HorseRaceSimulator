@@ -102,12 +102,19 @@ public class Race {
         }
         
         // This checks and print which horse won the race
+
         if (raceWonBy(lane1Horse)) {
             System.out.println("The winnner of the race is " + lane1Horse.getName() + " ");
+            lane1Horse.setConfidence(lane1Horse.getConfidence() + 0.1);
+         
         } else if (raceWonBy(lane2Horse)) {
             System.out.println("The winnner of the race is " + lane2Horse.getName() + " ");
+            lane2Horse.setConfidence(lane2Horse.getConfidence() + 0.1);
+         
         } else if (raceWonBy(lane3Horse)) {
             System.out.println("The winnner of the race is " + lane3Horse.getName() + " ");
+            lane3Horse.setConfidence(lane3Horse.getConfidence() + 0.1);
+         
         }
     }
 
