@@ -41,22 +41,22 @@ public class Horse
     
     public double getConfidence()
     {
-        return this.horse_confidence;
+        return horse_confidence;
     }
     
     public int getDistanceTravelled()
     {
-        return this.distance_travelled;
+        return distance_travelled;
     }
     
     public String getName()
     {
-        return this.horse_name;
+        return horse_name;
     }
     
     public char getSymbol()
     {
-        return this.horse_symbol;
+        return horse_symbol;
     }
     
     public void goBackToStart()
@@ -89,7 +89,7 @@ public class Horse
     
     public void setSymbol(char newSymbol)
     {
-        horse_symbol = newSymbol;
+        this.horse_symbol = newSymbol;
     }
     
 }
