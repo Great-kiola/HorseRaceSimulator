@@ -10,7 +10,7 @@ The file doesnt need any dependencies to run but make sure you have all the prog
 
 ### How to run
 To run the code and see the horses in action,
-- go to part 1 of the code
+- Go to part 1 of the code
 - Go the the race.java file
 - Right click and run java
 
